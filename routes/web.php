@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,8 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/register/teatcher/', 'create')->name('teacher.create');
     Route::post('/register/save', 'store')->name('teacher.store');
 });
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login/teatcher/', 'index')->name('login.index');
+});
+
