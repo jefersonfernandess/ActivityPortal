@@ -2,6 +2,10 @@
 
 @section('title', 'Home - ActivityControl')
 
+@extends('layout.navbar')
 @section('content')
-    @extends('layout.navbar')   
+    <div class="container">
+        <h1>HOME</h1>
+    </div>
 @endsection
+@extends('layout.footer')

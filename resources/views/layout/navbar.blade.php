@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{  route('site.index') }}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('site.index') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Painel</a>
@@ -35,7 +35,11 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="{{ route('teacher.index') }}">Ver professores</a></li>
+                            @if ()
+                                
+                            @endif
+                            <li><a class="dropdown-item" href="{{ route('teacher.index') }}">Ver professores</a>
+                            </li>
                             <li><a class="dropdown-item" href="#">Ver alunos</a></li>
                             <li>
                                 <form action="{{ route('login.logout') }}" method="post">
