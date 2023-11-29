@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     public function create() {
-        return view('teacher.register');
+        return view('auth.register');
     }
     
-    public function store(RegisterFormRequest $request) {
+    public function registerStore(RegisterFormRequest $request) {
         $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -27,13 +27,6 @@ class RegisterController extends Controller
             'role_id' => 2
         ]);     
 
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); 
-            return redirect()->route('home');
-        }
+        return redirect()->route('login.index');
     }
 }

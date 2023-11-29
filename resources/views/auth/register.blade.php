@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Login Professor')
+@section('title', 'Registrar Professor')
 <style>
     body {
         background-image: url(" {{ asset('img/bg.jpg') }}");
@@ -47,11 +47,19 @@
 </style>
 @section('content')
     <div class="container content">
-        <form id="form" class="form-register" action="{{ route('teacher.store') }}" method="post">
+        <form id="form" class="form-register" action="{{ route('register.store') }}" method="post">
             @csrf
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <h2>Login Professor</h2>
+                    <h2>Registro Professor</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex flex-column justify-content-center">
+                    <input type="text" name="name" id="name" placeholder="Nome" value="{{ old('name') }}">
+                    @error('name')
+                        <span>{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
             <div class="row">
@@ -72,7 +80,7 @@
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <button class="btn btn-dark" type="submit">Login</button>
+                    <button class="btn btn-dark" type="submit">Registrar</button>
                 </div>
             </div>
             @if (session('fail'))
@@ -84,6 +92,5 @@
             @endif
         </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script src="{{ asset('js/login/validation.js') }}"></script>
+    
 @endsection

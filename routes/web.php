@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,16 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::controller(SiteController::class)->group(function () {
+    Route::get('/', 'index')->name('site.index');
 
-Route::controller(RegisterController::class)->group(function () {
-    Route::get('/register/teatcher/', 'create')->name('teacher.create');
-    Route::post('/register/save', 'store')->name('teacher.store');
-});
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/login/teatcher', 'index')->name('login.index');
+        Route::post('/login/loading', 'loginStore')->name('login.store');
+        Route::post('/logout/', 'logout')->name('login.logout');
+    });
+    
+    Route::controller(RegisterController::class)->group(function () {
+        Route::get('/register/teatcher/', 'create')->name('register.create');
+        Route::post('/register/save', 'registerStore')->name('register.store');
+    });
 
-Route::controller(LoginController::class)->group(function () {
-    Route::get('/login/teatcher/', 'index')->name('login.index');
+    Route::controller(TeachersController::class)->group(function () {
+        Route::get('/teacher/view-all', 'index')->name('teacher.index');
+    });
 });
 
